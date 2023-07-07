@@ -18,6 +18,7 @@
                 </div>
                 <div class="cta">
                     <a href="/"><button class="btn btn-primary">Bekijk actie</button></a>
+                    <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl"/>
                 </div>
             </div>
         </div>
@@ -51,6 +52,15 @@
         border-radius: 3px;
         font-weight: bold;
         min-width: 123px;
+    }
+    .cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* optioneel, centreert de items horizontaal */
+    }
+    .cta img {
+        transform: rotate(-40deg) scaleX(-1);
+        margin: -4px 0px -10px -40px;
     }
     
 </style>

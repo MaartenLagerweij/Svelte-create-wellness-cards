@@ -10,7 +10,9 @@
 </script>
 
 <div class="card deal">
-    <img class="card-img-top" src={image} alt="Card image cap" />
+    <div class="img-wrapper">
+        <img class="card-img-top" src={image} alt="Card image cap" />
+    </div>
     <div class="card-body" style="background-image: url({logoCampaignURL});">
         <h5 class="card-title">{title}</h5>
         <p class="card-text">{location}</p>
@@ -25,6 +27,25 @@
     .card {
         margin: 2px;
     }
+    .card-body {
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        filter: grayscale(100%);
+        background-size: auto 40px;
+    }
+    .img-wrapper {
+        height: 150px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .deal button {
         box-shadow: 0 0 3px #7b7b7b;
         background-color: #f46500;
@@ -34,12 +55,7 @@
         min-width: 123px;
         margin: 10px 0px;
     }
-    .card-body {
-        background-repeat: no-repeat;
-        background-position: left bottom;
-        filter: grayscale(100%);
-        background-size: auto 40px;
-    }
+
     .deal button {
         display: inline-block;
     }
@@ -70,7 +86,6 @@
     }
     .deal .card-footer img {
         transform: rotate(45deg);
-        margin-top: -10px;
-        margin-right: -30px;
+        margin: -10px -30px -8px 0px;
     }
 </style>

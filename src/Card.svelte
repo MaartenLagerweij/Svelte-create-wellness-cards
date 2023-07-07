@@ -8,7 +8,6 @@
 
 </script>
 
-<main>
     <a href={url} target="_blank" title={`Korting ${campaigns[campaignID].name}`} class="card-link">
         <div class="card deal">
             <div class="card-body">
@@ -23,7 +22,6 @@
             </div>
         </div>
     </a>
-</main>
 
 <style>
     .card-link {

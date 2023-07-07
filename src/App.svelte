@@ -22,6 +22,7 @@
 		} else {
 			product.image = product.images[0]
 		}
+		//Only return the correct data for each product I need
 		return {
 			title: product.name,
 			url: product.URL,

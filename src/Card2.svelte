@@ -11,15 +11,19 @@
 
 <div class="card deal">
     <div class="img-wrapper">
-        <img class="card-img-top" src={image} alt="Card image cap" />
+        <img class="card-img-top" src={image} alt={`Bekijk de promotie ${title}`} />
     </div>
     <div class="card-body" style="background-image: url({logoCampaignURL});">
         <h5 class="card-title">{title}</h5>
         <p class="card-text">{location}</p>
     </div>
     <div class="card-footer">
-        <a href={url}><button class="btn btn-primary"><span>Bekijk aanbieding</span></button></a>
-        <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl"/>
+        <a href={url}>
+            <div class="button-container">
+                <button class="btn btn-primary svelte-129k69g"><span class="svelte-129k69g">Bekijk aanbieding</span></button>
+                <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl" class="svelte-129k69g">
+            </div>
+        </a>
     </div>
 </div>
 
@@ -87,5 +91,10 @@
     .deal .card-footer img {
         transform: rotate(45deg);
         margin: -10px -30px -8px 0px;
+    }
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>

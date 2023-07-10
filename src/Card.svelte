@@ -51,12 +51,13 @@
         border: 2px solid #fff;
         border-radius: 3px;
         font-weight: bold;
-        min-width: 123px;
+        min-width: 136px;
+        text-transform: uppercase;
     }
     .cta {
         display: flex;
         flex-direction: column;
-        align-items: center; /* optioneel, centreert de items horizontaal */
+        align-items: center;
     }
     .cta img {
         transform: rotate(-40deg) scaleX(-1);

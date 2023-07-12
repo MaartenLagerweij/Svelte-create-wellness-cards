@@ -6,16 +6,17 @@
 	import Card from './Card.svelte';
 	import Card2 from './Card2.svelte';
 
-	let svelteApp = document.getElementById('svelte-app');
-	let wellnessID = svelteApp.dataset.wellnessid
-	let currentWellness = wellnessListIDs[wellnessID].name;
-	console.log('currentWellness: ', currentWellness)
-
+	let svelteAppElement = document.getElementById('svelte-app');
+	let wellnessID = svelteAppElement.dataset.wellnessid
+	let currentWellness = wellnessListIDs[wellnessID];
 	
-	const products = mockData.products; 
+	const products = mockData.products;
 
 	//Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped product array that returns a consistent object of the necessary data
 	const mappedProducts = products.map(product => {
+		let titlePromotion = product.name ? product.name : product.product_info.title
+		titlePromotion = titlePromotion.replace(/[\s,-:]/g,"");
+		let show = currentWellness["regex"].test(titlePromotion);
 
 		//This IF statement is the case of the Daisycon data from SpaOnline. Make object that's consistent with TradeTracker VakantieVeilingen:
 		if(product.hasOwnProperty('update_info')){
@@ -34,9 +35,11 @@
 			url: product.URL,
 			campaignID: product.campaignID,
 			location: product.properties.city,
-			image: product.image
+			image: product.image,
+			show: show
 		}
 	})
+	console.log('mappedProducts: ', mappedProducts)
 </script>
 
 <main>

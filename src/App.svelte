@@ -1,44 +1,12 @@
 <script>
 	import 'bootstrap/dist/css/bootstrap.css';
 	
-	import mockData from './data/mock-data.js';
-	import {wellnessListIDs} from './data/wellnessListIDs.js';
+	//Load the promotion data and map each promotion into a universal object that could be used to create each Card
+	import { mappedPromotions } from './data/createPromotionData';
+
 	import Card from './Card.svelte';
 	import Card2 from './Card2.svelte';
-
-	let svelteAppElement = document.getElementById('svelte-app');
-	let wellnessID = svelteAppElement.dataset.wellnessid
-	let currentWellness = wellnessListIDs[wellnessID];
 	
-	const promotions = mockData.products;
-
-	//Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped product array that returns a consistent object of the necessary data
-	const mappedPromotions = promotions.map(promotion => {
-		let titlePromotion = promotion.name ? promotion.name : promotion.product_info.title
-		titlePromotion = titlePromotion.replace(/[\s,-:]/g,"");
-		let show = currentWellness["regex"].test(titlePromotion);
-
-		//This IF statement is the case of the Daisycon data from SpaOnline. Make object that's consistent with TradeTracker VakantieVeilingen:
-		if(promotion.hasOwnProperty('update_info')){
-			promotion.campaignID = Number(promotion.product_info.link.match(/(?<=\?si=)\d+/)[0]);
-			promotion.name = promotion.product_info.title;
-			promotion.URL = promotion.product_info.link;
-			promotion.image = promotion.product_info.images[0].location;
-			promotion.properties = {}
-			promotion.properties.city = promotion.product_info.keywords;
-		} else {
-			promotion.image = promotion.images[0]
-		}
-		//Only return the correct data for each product I need
-		return {
-			title: promotion.name,
-			url: promotion.URL,
-			campaignID: promotion.campaignID,
-			location: promotion.properties.city,
-			image: promotion.image,
-			show: show
-		}
-	})
 	console.log('mappedPromotions: ', mappedPromotions)
 </script>
 

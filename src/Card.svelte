@@ -1,20 +1,17 @@
 <script>
     import {campaigns} from './data/campaigns';
 
-    export let title;
-    export let url;
-    export let campaignID;
-    export let location;
-
+    export let promotion;
+    
 </script>
 
-    <a href={url} target="_blank" title={`Korting ${campaigns[campaignID].name}`} class="card-link">
+    <a href={promotion.url} target="_blank" title={`Korting ${campaigns[promotion.campaignID].name}`} class="card-link">
         <div class="card deal">
             <div class="card-body">
-                <div class="logo"><img src={campaigns[campaignID].image} alt={`logo ${campaigns[campaignID].name}`} /></div>
+                <div class="logo"><img src={campaigns[promotion.campaignID].image} alt={`logo ${campaigns[promotion.campaignID].name}`} /></div>
                 <div class="promotion-info">
-                    <h5 class="card-title">{title}</h5>
-                    <p class="card-text">{location}</p>
+                    <h5 class="card-title">{promotion.title}</h5>
+                    <p class="card-text">{promotion.location}</p>
                 </div>
                 <div class="cta">
                     <a href="/"><button class="btn btn-primary">Bekijk actie</button></a>

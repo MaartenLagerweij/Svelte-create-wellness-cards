@@ -47,13 +47,13 @@
 		<h1>Find here the list of all the promotions!</h1>
 		<h3>Underneath an overview of the Card1 template:</h3>
 		{#each mappedPromotions as promotion}
-			<Card title={promotion.title} url={promotion.url} campaignID={promotion.campaignID} location={promotion.location}/>
+			<Card {promotion}/>
 		{/each}
 
 		<h3>Underneath an overview of the Card2 template:</h3>
 		<div class="card-group">
 			{#each mappedPromotions as promotion}
-				<Card2 title={promotion.title} url={promotion.url} campaignID={promotion.campaignID} location={promotion.location} image={promotion.image}/>
+				<Card2 {promotion}/>
 			{/each}
 		</div>
 	</div>

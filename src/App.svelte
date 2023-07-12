@@ -10,50 +10,50 @@
 	let wellnessID = svelteAppElement.dataset.wellnessid
 	let currentWellness = wellnessListIDs[wellnessID];
 	
-	const products = mockData.products;
+	const promotions = mockData.products;
 
 	//Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped product array that returns a consistent object of the necessary data
-	const mappedProducts = products.map(product => {
-		let titlePromotion = product.name ? product.name : product.product_info.title
+	const mappedPromotions = promotions.map(promotion => {
+		let titlePromotion = promotion.name ? promotion.name : promotion.product_info.title
 		titlePromotion = titlePromotion.replace(/[\s,-:]/g,"");
 		let show = currentWellness["regex"].test(titlePromotion);
 
 		//This IF statement is the case of the Daisycon data from SpaOnline. Make object that's consistent with TradeTracker VakantieVeilingen:
-		if(product.hasOwnProperty('update_info')){
-			product.campaignID = Number(product.product_info.link.match(/(?<=\?si=)\d+/)[0]);
-			product.name = product.product_info.title;
-			product.URL = product.product_info.link;
-			product.image = product.product_info.images[0].location;
-			product.properties = {}
-			product.properties.city = product.product_info.keywords;
+		if(promotion.hasOwnProperty('update_info')){
+			promotion.campaignID = Number(promotion.product_info.link.match(/(?<=\?si=)\d+/)[0]);
+			promotion.name = promotion.product_info.title;
+			promotion.URL = promotion.product_info.link;
+			promotion.image = promotion.product_info.images[0].location;
+			promotion.properties = {}
+			promotion.properties.city = promotion.product_info.keywords;
 		} else {
-			product.image = product.images[0]
+			promotion.image = promotion.images[0]
 		}
 		//Only return the correct data for each product I need
 		return {
-			title: product.name,
-			url: product.URL,
-			campaignID: product.campaignID,
-			location: product.properties.city,
-			image: product.image,
+			title: promotion.name,
+			url: promotion.URL,
+			campaignID: promotion.campaignID,
+			location: promotion.properties.city,
+			image: promotion.image,
 			show: show
 		}
 	})
-	console.log('mappedProducts: ', mappedProducts)
+	console.log('mappedPromotions: ', mappedPromotions)
 </script>
 
 <main>
 	<div class="container">
 		<h1>Find here the list of all the promotions!</h1>
 		<h3>Underneath an overview of the Card1 template:</h3>
-		{#each mappedProducts as product}
-			<Card title={product.title} url={product.url} campaignID={product.campaignID} location={product.location}/>
+		{#each mappedPromotions as promotion}
+			<Card title={promotion.title} url={promotion.url} campaignID={promotion.campaignID} location={promotion.location}/>
 		{/each}
 
 		<h3>Underneath an overview of the Card2 template:</h3>
 		<div class="card-group">
-			{#each mappedProducts as product}
-				<Card2 title={product.title} url={product.url} campaignID={product.campaignID} location={product.location} image={product.image}/>
+			{#each mappedPromotions as promotion}
+				<Card2 title={promotion.title} url={promotion.url} campaignID={promotion.campaignID} location={promotion.location} image={promotion.image}/>
 			{/each}
 		</div>
 	</div>

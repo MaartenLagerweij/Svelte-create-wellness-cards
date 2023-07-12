@@ -1,20 +1,22 @@
 <script>
-    export let promotion;
-
+    
     import { campaigns } from "./data/campaigns";
-    let logoCampaignURL = campaigns[promotion.campaignID].image;
+    export let promotion;
+    let {image, title, location, url} = promotion;
+
+    let logoCampaignURL = campaigns[campaignID].image;
 </script>
 
 <div class="card deal">
     <div class="img-wrapper">
-        <img class="card-img-top" src={promotion.image} alt={`Bekijk de promotie ${promotion.title}`} />
+        <img class="card-img-top" src={image} alt={`Bekijk de promotie ${title}`} />
     </div>
     <div class="card-body" style="background-image: url({logoCampaignURL});">
-        <h5 class="card-title">{promotion.title}</h5>
-        <p class="card-text">{promotion.location}</p>
+        <h5 class="card-title">{title}</h5>
+        <p class="card-text">{location}</p>
     </div>
     <div class="card-footer">
-        <a href={promotion.url}>
+        <a href={url}>
             <div class="button-container">
                 <button class="btn btn-primary svelte-129k69g"><span class="svelte-129k69g">Bekijk aanbieding</span></button>
                 <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl" class="svelte-129k69g">

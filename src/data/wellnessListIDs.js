@@ -3,7 +3,7 @@ export const wellnessListIDs = {
     2: { name: "het-nolderwoud", regex: "nolderwoud|hetnolderwoud" },
     3: { name: "thermen-lucaya", regex: "lucaya|thermenlucaya" },
     4: { name: "salon-francy", regex: "francy|salonfrancy" },
-    5: { name: "fort-resort-beemster", regex: "fort|beemster|fortbeemster" },
+    5: { name: "fort-resort-beemster", regex: "beemster|fortbeemster" },
     6: { name: "zonnestudio-sunshine-groningen", regex: "zonnestudio|sunshine|zonnestudiosunshine|zonnestudiosunshinegroningen|sunshinegroningen" },
     7: { name: "plaza-sportiva-wellness", regex: "plazasportiva|plazasportivawellness|sportivawellness" },
     8: { name: "sauna-keizer", regex: "keizer|saunakeizer" },

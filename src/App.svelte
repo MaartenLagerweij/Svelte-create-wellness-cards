@@ -2,11 +2,17 @@
 	import 'bootstrap/dist/css/bootstrap.css';
 	
 	import mockData from './data/mock-data.js';
+	import {wellnessListIDs} from './data/wellnessListIDs.js';
 	import Card from './Card.svelte';
 	import Card2 from './Card2.svelte';
+
+	let svelteApp = document.getElementById('svelte-app');
+	let wellnessID = svelteApp.dataset.wellnessid
+	let currentWellness = wellnessListIDs[wellnessID].name;
+	console.log('currentWellness: ', currentWellness)
+
 	
-	const products = mockData.products;
-	console.log('products: ',products);
+	const products = mockData.products; 
 
 	//Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped product array that returns a consistent object of the necessary data
 	const mappedProducts = products.map(product => {
@@ -31,7 +37,6 @@
 			image: product.image
 		}
 	})
-	console.log('mappedProducts: ', mappedProducts)
 </script>
 
 <main>

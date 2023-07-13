@@ -2,12 +2,12 @@
     import {campaigns} from './data/campaigns';
 
     export let promotion;
-    let {url, campaignID, title, location} = promotion;
+    let {url, campaignID, title, location, show} = promotion;
     
 </script>
 
-    <a href={url} target="_blank" title={`Korting ${campaigns[campaignID].name}`} class="card-link">
-        <div class="card deal">
+     <a href={url} target="_blank" title={`Korting ${campaigns[campaignID].name}`} style="display: {show ? "block" : "none"}" class="card-link"> -->
+        <div class="card promotion">
             <div class="card-body">
                 <div class="logo"><img src={campaigns[campaignID].image} alt={`logo ${campaigns[campaignID].name}`} /></div>
                 <div class="promotion-info">
@@ -15,7 +15,7 @@
                     <p class="card-text">{location}</p>
                 </div>
                 <div class="cta">
-                    <a href="/"><button class="btn btn-primary">Bekijk actie</button></a>
+                    <a href="/"><button>Bekijk actie</button></a> 
                     <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl"/>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         gap: 1rem;
         justify-content: space-between;
     }
-    .deal button {
+    .promotion button {
         box-shadow: 0 0 3px #7b7b7b;
         background-color: #f46500;
         border: 2px solid #fff;
@@ -51,6 +51,7 @@
         font-weight: bold;
         min-width: 136px;
         text-transform: uppercase;
+        color: #fff;
     }
     .cta {
         display: flex;

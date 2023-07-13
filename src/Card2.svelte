@@ -2,7 +2,7 @@
     
     import { campaigns } from "./data/campaigns";
     export let promotion;
-    let {image, title, location, url} = promotion;
+    let {image, title, location, url, campaignID} = promotion;
 
     let logoCampaignURL = campaigns[campaignID].image;
 </script>

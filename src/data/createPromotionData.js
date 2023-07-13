@@ -1,6 +1,6 @@
 //This whole file is used to first receive the data and then create a mappedPromotions array of all promotions that each contains an object with only the necessary data
-import {wellnessListIDs} from './data/wellnessListIDs.js';
-import mockData from './data/mock-data.js';
+import {wellnessListIDs} from './wellnessListIDs.js';
+import mockData from './mock-data.js';
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');

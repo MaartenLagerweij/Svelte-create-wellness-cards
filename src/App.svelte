@@ -19,9 +19,12 @@
 		{/each}
 
 		<h3>Underneath an overview of the Card2 template:</h3>
-		<div class="card-group">
+
+		<div class="row">
 			{#each mappedPromotions as promotion}
-				<Card2 {promotion}/>
+				<div class="col-md-4">
+					<Card2 {promotion}/>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -49,5 +52,14 @@
 	}
 	.container {
 		max-width: 750px;
+	}
+	.col-md-4 {
+		padding: 6px;
+	}
+	.col-md-4:first-child {
+		padding-left: 0px;
+	}
+	.col-md-4:last-child {
+		padding-right: 0px;
 	}
 </style>

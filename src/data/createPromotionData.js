@@ -1,6 +1,8 @@
 //This whole file is used to first receive the data and then create a mappedPromotions array of all promotions that each contains an object with only the necessary data
 import {wellnessListIDs} from './wellnessListIDs.js';
 import mockData from './mock-data.js';
+import spaOnlineDaisyconJSON from './daisycon-spaonline.json';
+console.log('spaOnlineDaisyconJSON: ', spaOnlineDaisyconJSON)
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');

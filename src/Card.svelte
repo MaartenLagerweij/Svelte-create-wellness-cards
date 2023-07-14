@@ -3,10 +3,10 @@
 
     export let promotion;
     let {url, campaignID, title, location, show} = promotion;
-    
+    //style="display: {show ? "block" : "none"}"
 </script>
 
-    <a href={url} target="_blank" title={`Korting ${campaigns[campaignID].name}`} style="display: {show ? "block" : "none"}" class="promotion-link">
+    <a href={url} target="_blank" title={`Korting ${campaigns[campaignID].name}`}  class="promotion-link">
         <div class="promotion">
             <div class="promotion-body">
                 <div class="logo"><img src={campaigns[campaignID].image} alt={`logo ${campaigns[campaignID].name}`} /></div>

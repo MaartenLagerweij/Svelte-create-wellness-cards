@@ -2,12 +2,19 @@
 import {wellnessListIDs} from './wellnessListIDs.js';
 import mockData from './mock-data.js';
 import spaOnlineDaisyconJSON from './daisycon-spaonline.json';
-console.log('spaOnlineDaisyconJSON: ', spaOnlineDaisyconJSON)
+import vakantieVeilingenTradeTrackerJSON from './vakantieveilingen-tradetracker.json';
+console.log('vakantieVeilingenTradeTrackerJSON: ', vakantieVeilingenTradeTrackerJSON)
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');
 let wellnessID = svelteAppElement.dataset.wellnessid
 let currentWellness = wellnessListIDs[wellnessID];
+
+//Output all the data from VakantieVeilingen (TradeTracker data) from the ./vakantieveilingen-tradetracker.json file
+//const promotions = vakantieVeilingenTradeTrackerJSON.products
+
+//Output all the data from SpaOnline (Daisycon data) from the ./daisycon-spaonline.json file
+//const promotions = spaOnlineDaisyconJSON.datafeed.programs[0].products;
 
 //Get all promotions out of the Mock Data
 const promotions = mockData.products;

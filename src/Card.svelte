@@ -2,7 +2,22 @@
     import {campaigns} from './data/campaigns';
 
     export let promotion;
-    let {url, campaignID, title, location, show} = promotion;
+    let {url, campaignID, title, location, oldPrice, newPrice, show} = promotion;
+    let discount;
+
+    function numToEuroString(num){
+        return /\./.test(num.toString()) ? "€"+num.toString().replace(".",",") : "€"+num+",-"
+    }
+
+    if(campaignID == 4179 && newPrice == 1) newPrice = "v.a. €1,-"
+    if(campaignID == 11136) {
+        discount = Math.round((newPrice-oldPrice)/oldPrice*100)*-1
+        discount = discount+'% korting!';
+        oldPrice = numToEuroString(oldPrice);
+        newPrice = numToEuroString(newPrice);
+    };
+    if(/\|/.test(location))location = location.replace(/\|.*/,"");
+
     //style="display: {show ? "block" : "none"}"
 </script>
 
@@ -12,7 +27,22 @@
                 <div class="logo"><img src={campaigns[campaignID].image} alt={`logo ${campaigns[campaignID].name}`} /></div>
                 <div class="promotion-info">
                     <h5 class="promotion-title">{title}</h5>
-                    <p class="promotion-text"><i class="fas fa-map-marker"></i>  {location}</p>
+                    <div class="extra-info">
+                        <p class="promotion-text"><i class="fas fa-map-marker"></i>  {location}</p>
+                        <div class="price-info">
+                            <div class="old">
+                                {oldPrice ? oldPrice : ""}
+                            </div>
+                            <div class="newDiscount">
+                                <div class="new" style={campaignID == 11136 ? 'background-color: transparent': ''}>
+                                    {newPrice}
+                                </div>
+                                <div class={campaignID == 11136 ? 'discount' : ''}>
+                                    {discount?discount:""}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="cta">
                     <a href="/"><button><span>Bekijk actie</span></button></a> 
@@ -26,6 +56,9 @@
     /* Changed the .card bootstrap to .promotion with all corresponding elements */
     .promotion-link {
         text-decoration: none;
+    }
+    .logo {
+        max-width: 105px;
     }
     .promotion {
         margin: 10px;
@@ -48,9 +81,44 @@
     }
     .promotion-body {
         display: flex;
-        align-items: start;
+        align-items: center;
         gap: 1rem;
         justify-content: space-between;
+    }
+    .promotion .extra-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 2rem;
+    }
+    .promotion .price-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .promotion .price-info .new {
+        color: #06a306;
+        font-size: 1.15rem;
+        font-weight: 600;
+        background-color: #cfeccf;
+        padding: 3px 10px;
+        border-radius: 5%;
+        text-decoration: underline;
+    }
+    .promotion .price-info .old {
+        font-size: 0.9rem;
+        text-decoration: line-through;
+        color: #626262;
+    }
+    .promotion .price-info .newDiscount .discount {
+        font-size: 1.1rem;
+        font-weight: 500;
+        background-color: #cfeccf;
+        padding: 3px 7px;
+        border-radius: 5%;
+        color: #06a406;
     }
     /* All the button styling and span hover effect */
     .promotion button {

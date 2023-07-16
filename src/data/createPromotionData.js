@@ -30,19 +30,26 @@ export const mappedPromotions = promotions.map(promotion => {
         promotion.campaignID = Number(promotion.product_info.link.match(/(?<=\?si=)\d+/)[0]);
         promotion.name = promotion.product_info.title;
         promotion.URL = promotion.product_info.link;
+        promotion.price = {};
+        promotion.oldPrice = promotion.product_info.price_old;
+        promotion.price.amount = promotion.product_info.price;
         promotion.image = promotion.product_info.images[0].location;
         promotion.properties = {}
         promotion.properties.city = promotion.product_info.keywords;
     } else {
+        //In case there is no old price, like for VakantieVeilingen, set it to null
+        promotion.oldPrice = null;
         promotion.image = promotion.images[0]
     }
     //Only return the correct data for each promotion I need
     return {
+        campaignID: promotion.campaignID,
         title: promotion.name,
         url: promotion.URL,
-        campaignID: promotion.campaignID,
-        location: promotion.properties.city,
+        oldPrice: promotion.oldPrice,
+        newPrice: promotion.price.amount,
         image: promotion.image,
+        location: promotion.properties.city,
         show: show
     }
 })

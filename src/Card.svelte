@@ -176,5 +176,26 @@
         font-size: 22px;
         color: #595959;
     }
+    /* Make the Promotion cards more responsive */
+    @media only screen and (max-width: 600px) {
+        .promotion {
+            margin: 10px 0px;
+        }
+        .promotion-body {
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            gap: 0.75rem;
+        }
+        .promotion .extra-info {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .promotion .price-info {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
     
 </style>

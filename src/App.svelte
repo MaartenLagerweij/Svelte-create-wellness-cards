@@ -62,4 +62,10 @@
 	.col-md-4:last-child {
 		padding-right: 0px;
 	}
+	@media only screen and (max-width: 600px) {
+		/* Somehow couldn't overwrite the other style where the max with stays on 240px with a smaller screen for main */
+        main {
+            max-width: 570px;
+        }
+	}
 </style>

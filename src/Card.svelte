@@ -1,5 +1,6 @@
 <script>
     import {campaigns} from './data/campaigns';
+    import PriceComponent from './priceComponent.svelte';
 
     export let promotion;
     let {url, campaignID, title, location, oldPrice, newPrice, show} = promotion;
@@ -29,19 +30,7 @@
                     <h5 class="promotion-title">{title}</h5>
                     <div class="extra-info">
                         <p class="promotion-text"><i class="fas fa-map-marker"></i>  {location}</p>
-                        <div class="price-info">
-                            <div class="old">
-                                {oldPrice ? oldPrice : ""}
-                            </div>
-                            <div class="newDiscount">
-                                <div class="new" style={campaignID == 11136 ? 'background-color: transparent': ''}>
-                                    {newPrice}
-                                </div>
-                                <div class={campaignID == 11136 ? 'discount' : ''}>
-                                    {discount?discount:""}
-                                </div>
-                            </div>
-                        </div>
+                        <PriceComponent {oldPrice} {newPrice} {discount} {campaignID} />
                     </div>
                 </div>
                 <div class="cta">
@@ -92,34 +81,7 @@
         align-items: center;
         gap: 2rem;
     }
-    .promotion .price-info {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    .promotion .price-info .new {
-        color: #06a306;
-        font-size: 1.15rem;
-        font-weight: 600;
-        background-color: #cfeccf;
-        padding: 3px 10px;
-        border-radius: 5%;
-        text-decoration: underline;
-    }
-    .promotion .price-info .old {
-        font-size: 0.9rem;
-        text-decoration: line-through;
-        color: #626262;
-    }
-    .promotion .price-info .newDiscount .discount {
-        font-size: 1.1rem;
-        font-weight: 500;
-        background-color: #cfeccf;
-        padding: 3px 7px;
-        border-radius: 5%;
-        color: #06a406;
-    }
+    
     /* All the button styling and span hover effect */
     .promotion button {
         box-shadow: 0 0 3px #7b7b7b;
@@ -181,20 +143,14 @@
         .promotion {
             margin: 10px 0px;
         }
+        .promotion h5 {
+            margin: 0px 0px 5px 0px;
+        }
         .promotion-body {
             flex-direction: column;
             align-items: center;
             padding: 10px;
             gap: 0.75rem;
-        }
-        .promotion .extra-info {
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-        .promotion .price-info {
-            flex-direction: column;
-            align-items: center;
         }
     }
     

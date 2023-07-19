@@ -4,15 +4,24 @@
 	//Load the promotion data and map each promotion into a universal object that could be used to create each Card
 	import { mappedPromotions } from './data/createPromotionData';
 
+	import Filter from './Filter.svelte';
 	import Card from './Card.svelte';
 	import Card2 from './Card2.svelte';
 	
-	console.log('mappedPromotions: ', mappedPromotions)
+	let selectedCampaign;
+	let selectedWellness;
+
+	function handleFilter(event){
+		selectedCampaign = event.detail.campaign;
+	}
+
+	$: console.log('selectedCampaign: ', selectedCampaign);
 </script>
 
 <main>
 	<div class="container">
 		<h1>Find here the list of all the promotions!</h1>
+		<Filter on:filter={handleFilter}/>
 		<h3>Underneath an overview of the Card1 template:</h3>
 		{#each mappedPromotions as promotion}
 			<Card {promotion}/>
@@ -40,7 +49,7 @@
 	h1 {
 		color: #ff3e00;
 		text-transform: uppercase;
-		font-size: 4em;
+		font-size: 2em;
 		font-weight: 100;
 	}
 

@@ -17,8 +17,13 @@ let currentWellness = wellnessListIDs[wellnessID];
 //const promotions = spaOnlineDaisyconJSON.datafeed.programs[0].products;
 
 //Get all promotions out of the Mock Data
-const promotions = mockData.products;
+//const promotions = mockData.products;
 
+//push all the pomotions data from VakantieVeilingen & SpaOnline onto promotions:
+const promotions = vakantieVeilingenTradeTrackerJSON.products;
+spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
+
+console.log('promotions: ', promotions);
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data
 export const mappedPromotions = promotions.map(promotion => {
     let titlePromotion = promotion.name ? promotion.name : promotion.product_info.title

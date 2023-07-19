@@ -25,7 +25,7 @@ spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promoti
 
 console.log('promotions: ', promotions);
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data
-export const mappedPromotions = promotions.map(promotion => {
+export const mappedPromotions = promotions.map((promotion,index) => {
     let titlePromotion = promotion.name ? promotion.name : promotion.product_info.title
     titlePromotion = titlePromotion.replace(/[\s,-:]/g,"");
     let show = currentWellness["regex"].test(titlePromotion);
@@ -48,6 +48,7 @@ export const mappedPromotions = promotions.map(promotion => {
     }
     //Only return the correct data for each promotion I need
     return {
+        id: index,
         campaignID: promotion.campaignID,
         title: promotion.name,
         url: promotion.URL,

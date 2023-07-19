@@ -11,14 +11,13 @@
     
     const campaignsArray = Object.entries(campaigns);
     const wellnessArray = Object.entries(wellnessListIDs);
-    console.log('wellnessArray: ', wellnessArray);
 
-    let selectedCampaign;
+    let selectedCampaignID;
     let selectedWellness;
     
     $: {
         dispatch('filter', {
-            campaign: selectedCampaign,
+            campaignID: selectedCampaignID,
             wellness: selectedWellness,
         });
     }
@@ -27,9 +26,9 @@
 <div class="filter">
     <label>
         <b>Selecteer een campagne:</b>
-        <select class="form-select" bind:value={selectedCampaign}>
-            {#each campaignsArray as [, {name}]}
-                <option value={name}>{name}</option>
+        <select class="form-select" bind:value={selectedCampaignID}>
+            {#each campaignsArray as [campaignID, {name}]}
+                <option value={campaignID}>{name}</option>
             {/each}
         </select>
     </label>

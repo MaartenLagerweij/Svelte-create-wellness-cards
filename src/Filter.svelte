@@ -6,11 +6,23 @@
     import {campaigns} from './data/campaigns';
     import {wellnessListIDs} from './data/wellnessListIDs';
     import { numPromotionsForFilter } from './data/createPromotionData';
+    import { mappedPromotions } from './data/createPromotionData';
+
+    mappedPromotions.forEach(promotion => {
+        Object.entries(wellnessListIDs).map(wellness => {
+            if(wellness[1].regex.test(promotion.title)){
+                wellness[1].numPromotions += 1
+            }
+            return wellness
+        })
+    })
     
     const dispatch = createEventDispatcher();
     
     const campaignsArray = Object.entries(campaigns);
-    const wellnessArray = Object.entries(wellnessListIDs);
+    let wellnessArray = Object.entries(wellnessListIDs);
+    //to sort the wellness centres inside the Filter, starting with the ones that have promotions
+    wellnessArray.sort((a,b) => b[1].numPromotions - a[1].numPromotions)
 
     let selectedCampaignID;
     let selectedWellness;
@@ -27,9 +39,9 @@
     <label>
         <b>Selecteer een campagne:</b>
         <select class="form-select" bind:value={selectedCampaignID}>
-            <option value="all">Alle - {numPromotionsForFilter.all} kortingen gevonden</option>
+            <option value="all">Alle ({numPromotionsForFilter.all})</option>
             {#each campaignsArray as [campaignID, {name}]}
-                <option value={campaignID}>{name} {numPromotionsForFilter[name]}</option>
+                <option value={campaignID}>{name} ({numPromotionsForFilter[name]})</option>
             {/each}
         </select>
     </label>
@@ -37,8 +49,9 @@
     <label>
         <b>Selecteer een wellness:</b>
         <select class="form-select" bind:value={selectedWellness}>
-            {#each wellnessArray as [, {name}]}
-                <option value={name}>{name}</option>
+            <option value="all">Alle</option>
+            {#each wellnessArray as [name,{numPromotions}]}
+                <option value={name}>{name} ({numPromotions})</option>
             {/each}
         </select>
     </label>

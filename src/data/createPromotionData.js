@@ -9,16 +9,16 @@ let svelteAppElement = document.getElementById('svelte-app');
 let wellnessID = svelteAppElement.dataset.wellnessid
 let currentWellness = wellnessListIDs[wellnessID];
 
-//Output all the data from VakantieVeilingen (TradeTracker data) from the ./vakantieveilingen-tradetracker.json file
+//Option 1: Output all the data from VakantieVeilingen (TradeTracker data) from the ./vakantieveilingen-tradetracker.json file
 //const promotions = vakantieVeilingenTradeTrackerJSON.products
 
-//Output all the data from SpaOnline (Daisycon data) from the ./daisycon-spaonline.json file
+//Option 2: Output all the data from SpaOnline (Daisycon data) from the ./daisycon-spaonline.json file
 //const promotions = spaOnlineDaisyconJSON.datafeed.programs[0].products;
 
-//Get all promotions out of the Mock Data
+//Option 3: Get all promotions out of the Mock Data
 //const promotions = mockData.products;
 
-//push all the pomotions data from VakantieVeilingen & SpaOnline onto promotions:
+//Option 4: Push all the pomotions data from VakantieVeilingen & SpaOnline onto promotions:
 const promotions = [...vakantieVeilingenTradeTrackerJSON.products];
 spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
 

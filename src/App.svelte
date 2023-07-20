@@ -3,6 +3,7 @@
 	
 	//Load the promotion data and map each promotion into a universal object that could be used to create each Card
 	import { mappedPromotions } from './data/createPromotionData';
+	import {wellnessListIDs} from './data/wellnessListIDs';
 
 	import Filter from './Filter.svelte';
 	import Card from './Card.svelte';
@@ -16,15 +17,17 @@
 	let promotions = [];
 
 	$: {
+		promotions = mappedPromotions;
 		if (selectedCampaignID && selectedCampaignID !== 'all') {
 			promotions = mappedPromotions.filter(promotion => promotion.campaignID == selectedCampaignID);
-		} else {
-			promotions = mappedPromotions;
+		} if (selectedWellness && selectedWellness !== 'all') {
+			promotions = mappedPromotions.filter(promotion => wellnessListIDs[selectedWellness].regex.test(promotion.title));
 		}
 	}
 
 	function handleFilter(event){
 		selectedCampaignID = event.detail.campaignID;
+		selectedWellness = event.detail.wellness;
 	}
 </script>
 

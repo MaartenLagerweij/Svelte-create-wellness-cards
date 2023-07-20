@@ -3,7 +3,6 @@ import {wellnessListIDs} from './wellnessListIDs.js';
 import mockData from './mock-data.js';
 import spaOnlineDaisyconJSON from './daisycon-spaonline.json';
 import vakantieVeilingenTradeTrackerJSON from './vakantieveilingen-tradetracker.json';
-console.log('vakantieVeilingenTradeTrackerJSON: ', vakantieVeilingenTradeTrackerJSON)
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');
@@ -20,10 +19,15 @@ let currentWellness = wellnessListIDs[wellnessID];
 //const promotions = mockData.products;
 
 //push all the pomotions data from VakantieVeilingen & SpaOnline onto promotions:
-const promotions = vakantieVeilingenTradeTrackerJSON.products;
+const promotions = [...vakantieVeilingenTradeTrackerJSON.products];
 spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
 
-console.log('promotions: ', promotions);
+//Create object with number of products for each campagne, which can be used in the filter
+export const numPromotionsForFilter = {
+    'all': promotions.length,
+    'SpaOnline.com': spaOnlineDaisyconJSON.datafeed.programs[0].products.length,
+    'VakantieVeilingen': vakantieVeilingenTradeTrackerJSON.products.length,
+}
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data
 export const mappedPromotions = promotions.map((promotion,index) => {
     let titlePromotion = promotion.name ? promotion.name : promotion.product_info.title

@@ -53,7 +53,7 @@
         border-radius: 5%;
         color: #06a406;
     }
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 640px) {
         .price-info {
             flex-direction: column;
             align-items: center;

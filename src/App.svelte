@@ -7,6 +7,8 @@
 	import Filter from './Filter.svelte';
 	import Card from './Card.svelte';
 	import Card2 from './Card2.svelte';
+
+	//console.log('mappedPromotions213: ', mappedPromotions)
 	
 	let selectedCampaignID;
 	let selectedWellness;
@@ -14,25 +16,22 @@
 	let promotions = [];
 
 	$: {
-		if (selectedCampaignID) {
+		if (selectedCampaignID && selectedCampaignID !== 'all') {
 			promotions = mappedPromotions.filter(promotion => promotion.campaignID == selectedCampaignID);
-			console.log("Filtered promotions: ", promotions);
 		} else {
-			console.log('is this "else" being used? ')
 			promotions = mappedPromotions;
 		}
 	}
 
 	function handleFilter(event){
 		selectedCampaignID = event.detail.campaignID;
-		console.log("selectedCampaignID na filter: ", selectedCampaignID);
 	}
 </script>
 
 <main>
 	<div class="container">
 		<h1>Find here the list of all the promotions!</h1>
-		<Filter on:filter={handleFilter}/>
+		<Filter on:filter={handleFilter} />
 		<h3>Underneath an overview of the Card1 template:</h3>
 		{#each promotions as promotion (promotion.id)}
 			<Card {promotion}/>
@@ -81,7 +80,7 @@
 	.col-md-4:last-child {
 		padding-right: 0px;
 	}
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 640px) {
 		/* Somehow couldn't overwrite the other style where the max with stays on 240px with a smaller screen for main */
         main {
             max-width: 570px;

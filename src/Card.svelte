@@ -139,7 +139,7 @@
         color: #595959;
     }
     /* Make the Promotion cards more responsive */
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 640px) {
         .promotion {
             margin: 10px 0px;
         }

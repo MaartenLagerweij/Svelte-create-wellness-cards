@@ -9,7 +9,7 @@
 	import Card from './Card.svelte';
 	import Card2 from './Card2.svelte';
 
-	//console.log('mappedPromotions213: ', mappedPromotions)
+	mappedPromotions.sort((a,b) => a.title.localeCompare(b.title))
 	
 	let selectedCampaignID;
 	let selectedWellness;

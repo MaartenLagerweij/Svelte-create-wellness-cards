@@ -7,10 +7,10 @@
     let discount;
 
     function numToEuroString(num){
-        return /\./.test(num.toString()) ? "€"+num.toString().replace(".",",") : "€"+num+",-"
+        return /\./.test(num.toString()) ? "€"+num.toFixed(2).replace(".",",") : "€"+num+",-"
     }
 
-    if(campaignID == 4179 && newPrice == 1) newPrice = "v.a. €1,-"
+    if ((campaignID == 4179 || campaignID == 8308) && (newPrice == 1 || newPrice == 0)) newPrice = "v.a. €1,-"
     if(campaignID == 11136 || campaignID == 10456) {
         discount = Math.round((newPrice-oldPrice)/oldPrice*100)*-1
         discount = discount+'% korting!';
@@ -29,7 +29,7 @@
                 <div class="promotion-info">
                     <h5 class="promotion-title">{title}</h5>
                     <div class="extra-info">
-                        {#if location}
+                        {#if location && (typeof location !== 'object' || (Array.isArray(location) && location.length > 0))}
                             <p class="promotion-location"><i class="fas fa-map-marker"></i>  {location}</p>
                         {/if}
                         <PriceComponent {oldPrice} {newPrice} {discount} {campaignID} />

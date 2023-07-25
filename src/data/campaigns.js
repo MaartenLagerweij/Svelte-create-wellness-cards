@@ -10,5 +10,9 @@ export const campaigns = {
         10456: {
             name: 'ActievandeDag',
             image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/actievandedag-logo.png'
+        },
+        8308: {
+            name: 'TicketVeiling',
+            image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/ticketveiling-logo.jpeg'
         }
     }

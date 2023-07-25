@@ -4,6 +4,7 @@ import mockData from './mock-data.js';
 import spaOnlineDaisyconJSON from './daisycon-spaonline.json';
 import vakantieVeilingenTradeTrackerJSON from './vakantieveilingen-tradetracker.json';
 import actievandedagTradetrackerJSON from './actievandedagTradetracker.json';
+import ticketveilingTradetrackerJSON from './ticketveilingTradetracker.json';
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');
@@ -19,13 +20,17 @@ let currentWellness = wellnessListIDs[wellnessID];
 //Option 3: Output all the data from ActieVanDeDag.nl (TradeTracker data) from ./actievandedagTradetracker.json file
 //const promotions = actievandedagTradetrackerJSON.products
 
-//Option 4: Get all promotions out of the Mock Data
+//Option 4: Output all the data from TicketVeiling.nl (TradeTracker data) from ./ticketveilingTradetracker.json file
+//const promotions = ticketveilingTradetrackerJSON.products
+
+//Option 5: Get all promotions out of the Mock Data
 //const promotions = mockData.products;
 
-//Option 5: Push all the pomotions data from VakantieVeilingen, SpaOnline.com & ActievandeDag onto promotions:
+//Option 6: Push all the pomotions data from VakantieVeilingen, SpaOnline.com & ActievandeDag onto promotions:
 const promotions = [...vakantieVeilingenTradeTrackerJSON.products];
 spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
 actievandedagTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+ticketveilingTradetrackerJSON.products.forEach(promotion => promotions.push(promotion))
 
 
 //Create object with number of products for each campagne, which can be used in the filter
@@ -34,6 +39,7 @@ export const numPromotionsForFilter = {
     'SpaOnline.com': spaOnlineDaisyconJSON.datafeed.programs[0].products.length,
     'VakantieVeilingen': vakantieVeilingenTradeTrackerJSON.products.length,
     'ActievandeDag': actievandedagTradetrackerJSON.products.length,
+    'TicketVeiling': ticketveilingTradetrackerJSON.products.length,
 }
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data
 export const mappedPromotions = promotions.map((promotion,index) => {

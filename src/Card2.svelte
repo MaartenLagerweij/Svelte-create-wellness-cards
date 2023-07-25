@@ -5,6 +5,7 @@
     let {image, title, location, url, campaignID} = promotion;
 
     let logoCampaignURL = campaigns[campaignID].image;
+    if(/\|/.test(location))location = location.replace(/\|.*/,"");
 </script>
 
 <div class="promotion">
@@ -13,7 +14,7 @@
     </div>
     <div class="promotion-body" style="background-image: url({logoCampaignURL});">
         <h5 class="promotion-title">{title}</h5>
-        {#if location}
+        {#if location && (typeof location !== 'object' || (Array.isArray(location) && location.length > 0))}
             <p class="promotion-location"><i class="fas fa-map-marker"></i>  {location}</p>
         {/if}
     </div>

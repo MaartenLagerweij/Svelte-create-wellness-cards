@@ -3,6 +3,7 @@ import {wellnessListIDs} from './wellnessListIDs.js';
 import mockData from './mock-data.js';
 import spaOnlineDaisyconJSON from './daisycon-spaonline.json';
 import vakantieVeilingenTradeTrackerJSON from './vakantieveilingen-tradetracker.json';
+import actievandedagTradetrackerJSON from './actievandedagTradetracker.json';
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');
@@ -15,18 +16,24 @@ let currentWellness = wellnessListIDs[wellnessID];
 //Option 2: Output all the data from SpaOnline (Daisycon data) from the ./daisycon-spaonline.json file
 //const promotions = spaOnlineDaisyconJSON.datafeed.programs[0].products;
 
-//Option 3: Get all promotions out of the Mock Data
+//Option 3: Output all the data from ActieVanDeDag.nl (TradeTracker data) from ./actievandedagTradetracker.json file
+//const promotions = actievandedagTradetrackerJSON.products
+
+//Option 4: Get all promotions out of the Mock Data
 //const promotions = mockData.products;
 
-//Option 4: Push all the pomotions data from VakantieVeilingen & SpaOnline onto promotions:
+//Option 5: Push all the pomotions data from VakantieVeilingen, SpaOnline.com & ActievandeDag onto promotions:
 const promotions = [...vakantieVeilingenTradeTrackerJSON.products];
 spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
+actievandedagTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+
 
 //Create object with number of products for each campagne, which can be used in the filter
 export const numPromotionsForFilter = {
     'all': promotions.length,
     'SpaOnline.com': spaOnlineDaisyconJSON.datafeed.programs[0].products.length,
     'VakantieVeilingen': vakantieVeilingenTradeTrackerJSON.products.length,
+    'ActievandeDag': actievandedagTradetrackerJSON.products.length,
 }
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data
 export const mappedPromotions = promotions.map((promotion,index) => {
@@ -45,8 +52,12 @@ export const mappedPromotions = promotions.map((promotion,index) => {
         promotion.image = promotion.product_info.images[0].location;
         promotion.properties = {}
         promotion.properties.city = promotion.product_info.keywords;
+    } //Below else if is for ActievandeDag Image also has to be reset, otherwise the 'else' below won't run
+    else if (promotion.campaignID == 10456) {
+        promotion.oldPrice = Number(promotion.properties.fromPrice[0])
+        promotion.image = promotion.images[0]
     } else {
-        //In case there is no old price, like for VakantieVeilingen, set it to null
+        //In case there is no old price, like for VakantieVeilingen, set it to null to prevent an error
         promotion.oldPrice = null;
         promotion.image = promotion.images[0]
     }

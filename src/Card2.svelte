@@ -13,7 +13,9 @@
     </div>
     <div class="promotion-body" style="background-image: url({logoCampaignURL});">
         <h5 class="promotion-title">{title}</h5>
-        <p class="promotion-text"><i class="fas fa-map-marker"></i>  {location}</p>
+        {#if location}
+            <p class="promotion-location"><i class="fas fa-map-marker"></i>  {location}</p>
+        {/if}
     </div>
     <div class="promotion-footer">
         <a href={url}>
@@ -76,7 +78,7 @@
         justify-content: space-between;
         padding: 10px 5px 35px 5px;
     }
-    .promotion-text {
+    .promotion-location {
         text-align: center;
     }
     .img-wrapper {

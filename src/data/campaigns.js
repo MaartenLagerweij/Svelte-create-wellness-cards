@@ -6,5 +6,9 @@ export const campaigns = {
         11136: {
             name: 'SpaOnline.com',
             image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2015/12/Spaonline.jpg'
+        },
+        10456: {
+            name: 'ActievandeDag',
+            image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/actievandedag-logo.png'
         }
     }

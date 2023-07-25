@@ -11,7 +11,7 @@
     }
 
     if(campaignID == 4179 && newPrice == 1) newPrice = "v.a. €1,-"
-    if(campaignID == 11136) {
+    if(campaignID == 11136 || campaignID == 10456) {
         discount = Math.round((newPrice-oldPrice)/oldPrice*100)*-1
         discount = discount+'% korting!';
         oldPrice = numToEuroString(oldPrice);
@@ -29,7 +29,9 @@
                 <div class="promotion-info">
                     <h5 class="promotion-title">{title}</h5>
                     <div class="extra-info">
-                        <p class="promotion-text"><i class="fas fa-map-marker"></i>  {location}</p>
+                        {#if location}
+                            <p class="promotion-location"><i class="fas fa-map-marker"></i>  {location}</p>
+                        {/if}
                         <PriceComponent {oldPrice} {newPrice} {discount} {campaignID} />
                     </div>
                 </div>
@@ -60,7 +62,7 @@
     .promotion-info {
         color: black;
     }
-    .promotion-text {
+    .promotion-location {
         margin-bottom: 0px;
         text-align: center;
     }

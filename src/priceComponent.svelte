@@ -7,19 +7,22 @@
 
 <div class="price-info">
     <div class="new-discount">
-        <div class="old">
+        <div class="old" class:hidden={oldPrice=="€0,-"}>
             {oldPrice ? oldPrice : ""}
         </div>
         <div class="new" style={campaignID == 11136 ? 'background-color: transparent': ''}>
             {newPrice}
         </div>
     </div>
-    <div class={campaignID == 11136 ? 'discount' : ''}>
+    <div class={campaignID == 11136 ? 'discount' : ''} class:hidden={oldPrice=="€0,-"}>
         {discount?discount:""}
     </div>
 </div>
 
 <style>
+    .hidden {
+        display: none;
+    }
     .price-info {
         display: flex;
         flex-direction: column;

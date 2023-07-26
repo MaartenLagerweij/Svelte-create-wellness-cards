@@ -19,7 +19,7 @@
         {/if}
     </div>
     <div class="promotion-footer">
-        <a href={url}>
+        <a href={url} target="_blank">
             <div class="button-container">
                 <button class="svelte-129k69g"><span class="svelte-129k69g">Bekijk aanbieding</span></button>
                 <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl" class="svelte-129k69g">

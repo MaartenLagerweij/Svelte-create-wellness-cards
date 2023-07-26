@@ -14,5 +14,17 @@ export const campaigns = {
         8308: {
             name: 'TicketVeiling',
             image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/ticketveiling-logo.jpeg'
-        }
+        },
+        26224: {
+            name: 'Tripper',
+            image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/tripper-logo.jpeg'
+        },
+        // 2301: {
+        //     name: 'ZoWeg',
+        //     image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/zoweg-logo.jpg'
+        // },
+        // 13048: {
+        //     name: 'ADWebwinkel',
+        //     image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2020/02/ad-webwinkel-logo.png'
+        // },
     }

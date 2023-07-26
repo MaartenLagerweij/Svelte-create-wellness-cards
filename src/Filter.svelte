@@ -8,15 +8,23 @@
     import { numPromotionsForFilter } from './data/createPromotionData';
     import { mappedPromotions } from './data/createPromotionData';
 
+    //numMatchedPromotionsOnSite and matchedPromotions are only for testing how many promotions match welness's on the current site
+    let numMatchedPromotionsOnSite = 0;
+    const matchedPromotions = [];
+
     mappedPromotions.forEach(promotion => {
-        Object.entries(wellnessListIDs).map(wellness => {
-            if(wellness[1].regex.test(promotion.title)){
-                wellness[1].numPromotions += 1
+        Object.entries(wellnessListIDs).map(([wellnessName, wellnessData]) => {
+            if(wellnessData.regex.test(promotion.title)){
+                wellnessData.numPromotions += 1
+                numMatchedPromotionsOnSite += 1
+                if(!matchedPromotions.includes(wellnessName)) matchedPromotions.push(wellnessName);
             }
-            return wellness
+            return wellnessName
         })
     })
-    
+    console.log('numMatchedPromotionsOnSite: ', numMatchedPromotionsOnSite);
+    console.log(matchedPromotions);
+
     const dispatch = createEventDispatcher();
     
     const campaignsArray = Object.entries(campaigns);

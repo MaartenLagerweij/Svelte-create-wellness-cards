@@ -36,18 +36,22 @@
 		<h1>Find here the list of all the promotions!</h1>
 		<Filter on:filter={handleFilter} />
 		<h3>Underneath an overview of the Card1 template:</h3>
-		{#each promotions as promotion (promotion.id)}
-			<Card {promotion}/>
-		{/each}
+		<div class="inner-container">
+			{#each promotions as promotion (promotion.id)}
+				<Card {promotion}/>
+			{/each}
+		</div>
 
 		<h3>Underneath an overview of the Card2 template:</h3>
 
-		<div class="row">
-			{#each promotions as promotion (promotion.id)}
-				<div class="col-md-4">
-					<Card2 {promotion}/>
-				</div>
-			{/each}
+		<div class="inner-container">
+			<div class="row">
+				{#each promotions as promotion (promotion.id)}
+					<div class="col-md-4">
+						<Card2 {promotion}/>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 </main>
@@ -65,6 +69,29 @@
 		font-size: 2em;
 		font-weight: 100;
 	}
+
+	/* This is just for development testing, could be deleted later till given point */
+	.inner-container {
+		max-height: 600px;
+		overflow-y: scroll;
+		border: 1px solid #838383;
+		padding: 5px;
+	}
+	.inner-container::-webkit-scrollbar {
+		-webkit-appearance: none;
+	}
+	.inner-container::-webkit-scrollbar:vertical {
+		width: 11px;
+	}
+	.inner-container::-webkit-scrollbar:horizontal {
+		height: 11px;
+	}
+	.inner-container::-webkit-scrollbar-thumb {
+		border-radius: 8px;
+		border: 2px solid white; /* should match background, can't be transparent */
+		background-color: rgba(0, 0, 0, .5);
+	}
+	/* Till here */
 
 	@media (min-width: 640px) {
 		main {

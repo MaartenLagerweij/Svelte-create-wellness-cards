@@ -11,7 +11,7 @@
     }
 
     if ((campaignID == 4179 || campaignID == 8308) && (newPrice == 1 || newPrice == 0)) newPrice = "v.a. €1,-"
-    if(campaignID == 11136 || campaignID == 10456) {
+    if(campaignID == 11136 || campaignID == 10456 || campaignID == 26224 || campaignID == 13048) {
         discount = Math.round((newPrice-oldPrice)/oldPrice*100)*-1
         discount = discount+'% korting!';
         oldPrice = numToEuroString(oldPrice);
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="cta">
-                    <a href="/"><button><span>Bekijk actie</span></button></a> 
+                    <a target="_blank" href={url}><button><span>Bekijk actie</span></button></a>
                     <img src="https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/pijl2.png" alt="Call to action pijl"/>
                 </div>
             </div>

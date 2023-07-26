@@ -103,7 +103,7 @@ export const wellnessListIDs = {
   "Spasense": { ID: 102, regex: /spasense/gi , numPromotions: 0},
   "De Woudfennen": { ID: 103, regex: /woudfennen/gi , numPromotions: 0},
   "Thermae 2000": { ID: 104, regex: /^(?=.*thermae)(?=.*2000).*$/gi , numPromotions: 0},
-  "Spapuur": { ID: 105, regex: /spapuur/gi , numPromotions: 0},
+  "Spapuur": { ID: 105, regex: /spapuur|^(?=.*spa)(?=.*puur).*$/gi , numPromotions: 0},
   "Spasereen": { ID: 106, regex: /spasereen/gi , numPromotions: 0},
   "Wellness Trivium": { ID: 107, regex: /^(?=.*wellness)(?=.*trivium).*$/gi , numPromotions: 0},
   "Thermen Goirle": { ID: 108, regex: /^(?=.*thermen)(?=.*goirle).*$/gi , numPromotions: 0},

@@ -5,6 +5,10 @@ import spaOnlineDaisyconJSON from './daisycon-spaonline.json';
 import vakantieVeilingenTradeTrackerJSON from './vakantieveilingen-tradetracker.json';
 import actievandedagTradetrackerJSON from './actievandedagTradetracker.json';
 import ticketveilingTradetrackerJSON from './ticketveilingTradetracker.json';
+import tripperTradetrackerJSON from './tripperTradetracker.json';
+//Couldn't find usefull data for Zoweg
+//import zowegTradetrackerJSON from './zowegTradetracker.json';
+import ADWebwinkelDaisyconJSON from './ADWebwinkelDaisycon.json';
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
 let svelteAppElement = document.getElementById('svelte-app');
@@ -23,14 +27,26 @@ let currentWellness = wellnessListIDs[wellnessID];
 //Option 4: Output all the data from TicketVeiling.nl (TradeTracker data) from ./ticketveilingTradetracker.json file
 //const promotions = ticketveilingTradetrackerJSON.products
 
-//Option 5: Get all promotions out of the Mock Data
+//Option 5: Output all the data from Tripper.nl (TradeTracker data) from ./tripperTradetracker.json file
+//const promotions = tripperTradetrackerJSON.products
+
+//Option 6: Output all the data from Tripper.nl (TradeTracker data) from ./tripperTradetracker.json file
+//const promotions = zowegTradetrackerJSON.products
+
+//Option 7: Output all the data from ADWebwinkel.nl (TradeTracker data) from ./tripperTradetracker.json file
+//const promotions = ADWebwinkelDaisyconJSON.datafeed.programs[0].products;
+
+//Option 8: Get all promotions out of the Mock Data
 //const promotions = mockData.products;
 
-//Option 6: Push all the pomotions data from VakantieVeilingen, SpaOnline.com & ActievandeDag onto promotions:
+//Option 9: Push all the pomotions data from VakantieVeilingen, SpaOnline.com & ActievandeDag onto promotions:
 const promotions = [...vakantieVeilingenTradeTrackerJSON.products];
 spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
 actievandedagTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
-ticketveilingTradetrackerJSON.products.forEach(promotion => promotions.push(promotion))
+ticketveilingTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+tripperTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+//ADWebwinkelDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
+
 
 
 //Create object with number of products for each campagne, which can be used in the filter
@@ -40,6 +56,9 @@ export const numPromotionsForFilter = {
     'VakantieVeilingen': vakantieVeilingenTradeTrackerJSON.products.length,
     'ActievandeDag': actievandedagTradetrackerJSON.products.length,
     'TicketVeiling': ticketveilingTradetrackerJSON.products.length,
+    'Tripper': tripperTradetrackerJSON.products.length,
+    //'ZoWeg': zowegTradetrackerJSON.products.length,
+    //'ADWebwinkel': ADWebwinkelDaisyconJSON.datafeed.programs[0].products.length,
 }
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data
 export const mappedPromotions = promotions.map((promotion,index) => {
@@ -55,11 +74,12 @@ export const mappedPromotions = promotions.map((promotion,index) => {
         promotion.price = {};
         promotion.oldPrice = promotion.product_info.price_old;
         promotion.price.amount = promotion.product_info.price;
-        promotion.image = promotion.product_info.images[0].location;
+        //For AD Webwinkel it happened that the images array was empty. In that case return null
+        promotion.image = promotion.product_info.images.length < 1 ? null : promotion.product_info.images[0].location;
         promotion.properties = {}
         promotion.properties.city = promotion.product_info.keywords;
-    } //Below else if is for ActievandeDag Image also has to be reset, otherwise the 'else' below won't run
-    else if (promotion.campaignID == 10456) {
+    } //Below else if is for ActievandeDag || Tripper Image also has to be reset, otherwise the 'else' below won't run
+    else if (promotion.campaignID == 10456 || promotion.campaignID == 26224) {
         promotion.oldPrice = Number(promotion.properties.fromPrice[0])
         promotion.image = promotion.images[0]
     } else {

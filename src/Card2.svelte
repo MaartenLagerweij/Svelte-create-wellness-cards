@@ -10,7 +10,7 @@
 
 <div class="promotion">
     <div class="img-wrapper">
-        <img class="promotion-img-top" src={image} alt={`Bekijk de promotie ${title}`} />
+        <img loading="lazy" class="promotion-img-top" src={image} alt={`Bekijk de promotie ${title}`} />
     </div>
     <div class="promotion-body" style="background-image: url({logoCampaignURL});">
         <h5 class="promotion-title">{title}</h5>

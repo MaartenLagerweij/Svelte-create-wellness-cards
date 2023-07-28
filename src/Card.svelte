@@ -11,11 +11,15 @@
     }
 
     if ((campaignID == 4179 || campaignID == 8308) && (newPrice == 1 || newPrice == 0)) newPrice = "v.a. €1,-"
-    if(campaignID == 11136 || campaignID == 10456 || campaignID == 26224 || campaignID == 13048) {
-        discount = Math.round((newPrice-oldPrice)/oldPrice*100)*-1
-        discount = discount+'% korting!';
-        oldPrice = numToEuroString(oldPrice);
-        newPrice = numToEuroString(newPrice);
+    if(campaignID == 11136 || campaignID == 10456 || campaignID == 26224 || campaignID == 13048 || campaignID == 686) {
+        if(oldPrice && newPrice){
+            discount = Math.round((newPrice-oldPrice)/oldPrice*100)*-1
+            discount = discount+'% korting!';
+            oldPrice = numToEuroString(oldPrice);
+            newPrice = numToEuroString(newPrice);
+        } else if(!oldPrice&&newPrice){
+            newPrice = numToEuroString(newPrice);
+        }
     };
     if(/\|/.test(location))location = location.replace(/\|.*/,"");
 

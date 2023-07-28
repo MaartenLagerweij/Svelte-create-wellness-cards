@@ -2,7 +2,6 @@
     export let oldPrice;
     export let newPrice;
     export let discount;
-    export let campaignID;
 </script>
 
 <div class="price-info">
@@ -10,11 +9,11 @@
         <div class="old" class:hidden={oldPrice=="€0,-"}>
             {oldPrice ? oldPrice : ""}
         </div>
-        <div class="new" style={campaignID == 11136 ? 'background-color: transparent': ''}>
+        <div class="new" style={discount ? 'background-color: transparent': ''}>
             {newPrice}
         </div>
     </div>
-    <div class={campaignID == 11136 ? 'discount' : ''} class:hidden={oldPrice=="€0,-"}>
+    <div class={discount? 'discount' : ''} class:hidden={oldPrice=="€0,-"}>
         {discount?discount:""}
     </div>
 </div>

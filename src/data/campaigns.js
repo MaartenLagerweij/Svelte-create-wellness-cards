@@ -23,6 +23,10 @@ export const campaigns = {
             name: 'HotelSpecials',
             image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2020/02/hotelspecials-logo.jpg'
         },
+        34295: {
+            name: 'Voordeeluitjes.nl',
+            image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2020/02/voordeeluitjes-logo.png'
+        },
         // 2301: {
         //     name: 'ZoWeg',
         //     image: 'https://wellnesscentrumnederland.nl/wp-content/uploads/2023/07/zoweg-logo.jpg'

@@ -7,8 +7,8 @@ import actievandedagTradetrackerJSON from './actievandedagTradetracker.json';
 import ticketveilingTradetrackerJSON from './ticketveilingTradetracker.json';
 import tripperTradetrackerJSON from './tripperTradetracker.json';
 //Couldn't find usefull data for Zoweg, so commenting it out for now
-//import zowegTradetrackerJSON from './zowegTradetracker.json';
-import ADWebwinkelDaisyconJSON from './ADWebwinkelDaisycon.json';
+// import zowegTradetrackerJSON from './zowegTradetracker.json';
+// import ADWebwinkelDaisyconJSON from './ADWebwinkelDaisycon.json';
 import hotelspecialsTradetrackerJSON from './hotelspecialsTradetracker.json';
 
 //Get the <div> of the svelte-app on the active page in order to then get the correct WellnessID to then connect the right promotion to
@@ -18,14 +18,14 @@ let currentWellness = wellnessListIDs[wellnessID];
 
 
 const promotions = [];
-// vakantieVeilingenTradeTrackerJSON.products.forEach(promotion => promotions.push(promotion));
-// spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
-// actievandedagTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
-// ticketveilingTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
-// tripperTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+vakantieVeilingenTradeTrackerJSON.products.forEach(promotion => promotions.push(promotion));
+spaOnlineDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
+actievandedagTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+ticketveilingTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+tripperTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
 
-//zowegTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
-//ADWebwinkelDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
+// zowegTradetrackerJSON.products.forEach(promotion => promotions.push(promotion));
+// ADWebwinkelDaisyconJSON.datafeed.programs[0].products.forEach(promotion => promotions.push(promotion));
 hotelspecialsTradetrackerJSON.products.forEach(promotion => promotions.push(promotion))
 //const promotions = mockData.products;
 
@@ -38,8 +38,8 @@ export const numPromotionsForFilter = {
     'ActievandeDag': actievandedagTradetrackerJSON.products.length,
     'TicketVeiling': ticketveilingTradetrackerJSON.products.length,
     'Tripper': tripperTradetrackerJSON.products.length,
-    //'ZoWeg': zowegTradetrackerJSON.products.length,
-    //'ADWebwinkel': ADWebwinkelDaisyconJSON.datafeed.programs[0].products.length,
+    // 'ZoWeg': zowegTradetrackerJSON.products.length,
+    // 'ADWebwinkel': ADWebwinkelDaisyconJSON.datafeed.programs[0].products.length,
     'HotelSpecials': hotelspecialsTradetrackerJSON.products.length,
 }
 //Data is not consistent for both TradeTracker and Daisycon. That's why make a mapped promotion array that returns a consistent object of the necessary data

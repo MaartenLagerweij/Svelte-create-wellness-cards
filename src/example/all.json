@@ -1,0 +1,6 @@
+{
+    "offers": [
+        { "name": "stadtbad", "promotion": "10 off"},
+        { "name": "vilbali", "promotion": "15 off"}
+    ]
+}
